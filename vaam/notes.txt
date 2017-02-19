@@ -1,0 +1,24 @@
+Twitter account
+===============
+@vaam_ezdevaj
+arman.ordookhani+vaam@gmail.com
+
+
+Install Dependencies
+====================
+mkdir /srv/vaam_ezdevaj
+cd /srv/vaam_ezdevaj
+virtualenv env
+source env/bin/activate
+pip install -r requirements.txt
+apt-get install phantomjs
+
+git clone git@gitlab.com:Arman/vaam.git src
+
+
+Run
+===
+screen -R vaam
+cd /srv/vaam_ezdevaj/src
+source ../env/bin/activate
+python run.py
