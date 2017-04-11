@@ -3,11 +3,9 @@
 <html lang="fa">
 <head>
     <meta charset="UTF-8">
-    <script type="text/javascript" src="{% static 'js/../static/js/jquery-1.11.2.min.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/home.js' %}"></script>
 </head>
 <body>
-    <form action="/get_week">
+    <form action="/ajax/get_week">
         {% csrf_token %}
         <input type="text" name="date" placeholder="date">
         <button class="submit">submit</button>

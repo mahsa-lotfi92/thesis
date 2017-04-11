@@ -1,6 +1,7 @@
 body{
     direction: rtl;
     padding-top: 20px;
+    text-align: right;
 }
 
 .tr-table{

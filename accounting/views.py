@@ -8,14 +8,14 @@ from accounting.models import Transaction
 
 def add_income(request):
     add_transaction(request.GET['date'], request.GET['amount'], True)
-    return HttpResponse(status=200)
+    return render_to_response('accounting.html', {'transactions': Transaction.objects.all()})
 
 
 def add_outgoing(request):
     date = request.GET['date']
     amount = request.GET['amount']
     add_transaction(date, amount)
-    return HttpResponse(status=200)
+    return render_to_response('accounting.html', {'transactions': Transaction.objects.all()})
 
 
 def list_transactions(request):

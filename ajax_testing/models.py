@@ -2,8 +2,8 @@ from django.db import models
 
 # Create your models here.
 class RequestEntry(models.Model):
-    input_json = models.TextField()
-    output_json = models.TextField()
+    input_json = models.BinaryField()
+    output_json = models.BinaryField()
     function_name = models.CharField(max_length=100)
     success = models.BooleanField()
     test_res = models.NullBooleanField(null=True)
