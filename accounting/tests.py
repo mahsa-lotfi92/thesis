@@ -6,7 +6,8 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "thesis.settings")
 django.setup()
 
 
-from accounting.methods import get_transactions_by_date, get_sum, add_transaction
+from accounting.models import Transaction
+from accounting.methods import get_transactions_by_date, get_sum, add_transaction, remove_transaction_by_id
 from ajax_testing.models import RequestEntry
 from django.test import TestCase
 import pickle
@@ -27,7 +28,7 @@ class AccountingTest(TestCase):
                     with self.assertRaises(Exception):
                         get_transactions_by_date(*(pickle.loads(t.input_json)))
 
-            if 'get_sum' in t.function_name:
+            elif 'get_sum' in t.function_name:
                 if t.success:
                     inputs = pickle.loads(t.input_json)
                     outputs = pickle.loads(t.output_json)
@@ -36,7 +37,7 @@ class AccountingTest(TestCase):
                     with self.assertRaises(Exception):
                         get_sum(*(pickle.loads(t.input_json)))
 
-            if 'add_transaction' in t.function_name:
+            elif 'add_transaction' in t.function_name:
                 if t.success:
                     inputs = pickle.loads(t.input_json)
                     outputs = pickle.loads(t.output_json)
@@ -44,3 +45,20 @@ class AccountingTest(TestCase):
                 else:
                     with self.assertRaises(Exception):
                         add_transaction(*(pickle.loads(t.input_json)))
+
+            elif 'remove_transaction_by_id' in t.function_name:
+                if t.success:
+                    inputs = pickle.loads(t.input_json)
+                    outputs = pickle.loads(t.output_json)
+
+                    t = Transaction.objects.last()
+                    id = t.id
+                    t.id = inputs[0]
+                    t.save()
+                    self.assertEqual(remove_transaction_by_id(*(inputs)), outputs)
+                    t.id = id
+                    t.save()
+
+                else:
+                    with self.assertRaises(Exception):
+                        remove_transaction_by_id(*(pickle.loads(t.input_json)))

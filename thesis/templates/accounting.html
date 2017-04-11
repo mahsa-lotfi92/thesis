@@ -88,6 +88,7 @@
                             <th>تاریخ</th>
                             <th>مبلغ</th>
                             <th>واریز/ برداشت</th>
+                            <th>حذف</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -103,6 +104,7 @@
                                     {% endif %}
 
                                 </td>
+                                <td><form action="/accounting/remove_transaction/{{ t.id }}"><button class="submit btn btn-danger">حذف</button></form></td>
                             </tr>
                         {% endfor %}
                         </tbody>

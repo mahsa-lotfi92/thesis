@@ -10,11 +10,13 @@ def add_transaction(date, amount, is_income=False):
     Transaction.objects.create(date=date, amount=amount, is_income=is_income)
     return True
 
+
 @save_request
 def get_transactions_by_date(start, end):
     start = datetime.strptime(start, "%Y/%m/%d") if start else datetime.today()+timedelta(days=-1)
     end = datetime.strptime(end, "%Y/%m/%d") if end else datetime.today()
     return Transaction.objects.filter(date__gte=start, date__lte=end).all()
+
 
 @save_request
 def get_sum(transactions):
@@ -22,7 +24,13 @@ def get_sum(transactions):
     get=0
     for t in transactions:
         if t.is_income:
-            get += t.amount
+            get = get + t.amount
         else:
-            paid += t.amount
+            paid = paid + t.amount
     return get, paid
+
+
+@save_request
+def remove_transaction_by_id(id):
+    Transaction.objects.get(id=id).delete()
+    return True

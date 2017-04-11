@@ -2,7 +2,7 @@ from datetime import datetime
 from django.http.response import HttpResponse
 from django.shortcuts import render, render_to_response
 
-from accounting.methods import add_transaction, get_transactions_by_date, get_sum
+from accounting.methods import add_transaction, get_transactions_by_date, get_sum, remove_transaction_by_id
 from accounting.models import Transaction
 
 
@@ -29,3 +29,8 @@ def filter_by_date(request):
     transactions = get_transactions_by_date(start, end)
     get, paid = get_sum(transactions)
     return render_to_response('accounting.html', {'transactions': transactions, 'paid': paid, 'get':get, 'reminded':get-paid})
+
+
+def remove_transaction(request, id):
+    remove_transaction_by_id(id)
+    return render(request, 'accounting.html', {'transactions': Transaction.objects.all()})
