@@ -22,7 +22,7 @@ def save_request(function):
                                      function_name=(function.__module__ + '.'+ function.__name__), success=True,
                                      previous_request=last_method)
                 entry.save()
-                file.write('{} {} \n'.format(input_json, json.dumps(str(output))))
+                file.write('{} {} {} \n'.format((function.__module__ + '.'+ function.__name__), input_json, json.dumps(str(output))))
                 return output
             except Exception as e:
                 entry = RequestEntry(input_json=input_json, function_name=(function.__module__ + '.' + function.__name__),

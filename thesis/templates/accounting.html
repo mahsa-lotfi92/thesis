@@ -1,0 +1,101 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <script type="text/javascript" src="{% static 'js/jquery-1.11.2.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/home.js' %}"></script>
+    <title>حسابداری شخصی</title>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-6">
+            <form action="/accounting/add_outgoing_transaction">
+                <div class="panel panel-default">
+                    {% csrf_token %}
+                    <div class="panel-heading">
+                        خرج کردم
+                    </div>
+                    <div class="panel-body">
+                        <input type="text" name="date" placeholder="تاریخ">
+                        <input type="text" name="amount" placeholder="مبلغ">
+                        <button class="submit">افزودن</button>
+
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-xs-6">
+            <form action="/accounting/add_income_transaction">
+                <div class="panel panel-default">
+                    {% csrf_token %}
+                    <div class="panel-heading">
+                    دریافت کردم
+                    </div>
+                    <div class="panel-body">
+                        <input type="text" name="date" placeholder="تاریخ">
+                        <input type="text" name="amount" placeholder="مبلغ">
+                        <button class="submit">افزودن</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <form action="/accounting/filter_by_date">
+            <div class="col-xs-12">
+                از
+                <input type="text" name="start" placeholder="تاریخ">
+                تا
+                <input type="text" name="end" placeholder="تاریخ">
+
+                <button class="submit">فیلتر</button>
+            </div>
+
+        </form>
+        <div class="col-xs-12">
+            <div class="col-xs-4">
+                کل دریافتی:
+                {{ get }}
+            </div>
+            <div class="col-xs-4">
+                کل خرجی:
+                {{ paid }}
+            </div>
+            <div class="col-xs-4">
+                مانده:
+                {{ reminded }}
+            </div>
+            <table class="table table-bordered tr-table">
+                <thead>
+                    <tr>
+                        <th>تاریخ</th>
+                        <th>مبلغ</th>
+                        <th>واریز/ برداشت</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for t in transactions %}
+                    <tr>
+                        <td>{{ t.date }}</td>
+                        <td>{{ t.amount }}</td>
+                        <td>
+                            {% if t.is_income %}
+                            واریز
+                            {% else %}
+                            برداشت
+                            {% endif %}
+
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>
