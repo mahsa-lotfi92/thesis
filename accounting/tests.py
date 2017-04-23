@@ -5,7 +5,7 @@ import django
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "thesis.settings")
 django.setup()
 
-
+from importlib import import_module
 from accounting.models import Transaction
 from accounting.methods import get_transactions_by_date, get_sum, add_transaction, remove_transaction_by_id
 from ajax_testing.models import RequestEntry
@@ -16,9 +16,8 @@ import pickle
 
 class AccountingTest(TestCase):
     def test_collected_data(self):
-        tests = RequestEntry.objects.filter(function_name__contains='accounting').all()
+        tests = RequestEntry.objects.filter(function_name__contains='accounting').order_by('-id').all()
         for t in tests:
-
             if 'get_transactions_by_date' in t.function_name:
                 if t.success:
                     inputs = pickle.loads(t.input_json)
@@ -62,3 +61,14 @@ class AccountingTest(TestCase):
                 else:
                     with self.assertRaises(Exception):
                         remove_transaction_by_id(*(pickle.loads(t.input_json)))
+            else:
+                name = t.function_name
+                inputs = pickle.loads(t.input_json)
+                p, m = name.rsplit('.', 1)
+                module = import_module(p)
+                method = getattr(module, m)
+                if t.success:
+                    self.assertEqual(method(*inputs).content, pickle.loads(t.output_json).content)
+                else:
+                    with self.assertRaises(Exception):
+                        method(*inputs)
