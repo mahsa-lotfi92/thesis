@@ -1,0 +1,402 @@
+[*] Start mutation process:
+   - targets: library.methods
+   - tests: library.nadia_tests.LibraryNadiaTest
+[*] 1 tests passed:
+   - library.nadia_tests.LibraryNadiaTest [0.03359 s]
+[*] Start mutants generation and execution:
+   - [#   1] AOD library.methods:16 : 
+--------------------------------------------------------------------------------
+ 12: 
+ 13: 
+ 14: @save_request
+ 15: def get_books_by_date(start, end):
+~16:     start = datetime.strptime(start, '%Y/%m/%d') if start else datetime.today() + timedelta(days=1)
+ 17:     end = datetime.strptime(end, '%Y/%m/%d') if end else datetime.today()
+ 18:     return Book.objects.filter(publish_date__gte=start, publish_date__lte=end).all()
+ 19: 
+ 20: 
+ 21: @save_request
+--------------------------------------------------------------------------------
+[0.03696 s] survived
+   - [#   2] AOR library.methods:16 : 
+--------------------------------------------------------------------------------
+ 12: 
+ 13: 
+ 14: @save_request
+ 15: def get_books_by_date(start, end):
+~16:     start = datetime.strptime(start, '%Y/%m/%d') if start else datetime.today() - timedelta(days=(-1))
+ 17:     end = datetime.strptime(end, '%Y/%m/%d') if end else datetime.today()
+ 18:     return Book.objects.filter(publish_date__gte=start, publish_date__lte=end).all()
+ 19: 
+ 20: 
+ 21: @save_request
+--------------------------------------------------------------------------------
+[0.02718 s] survived
+   - [#   3] AOR library.methods:16 : 
+--------------------------------------------------------------------------------
+ 12: 
+ 13: 
+ 14: @save_request
+ 15: def get_books_by_date(start, end):
+~16:     start = datetime.strptime(start, '%Y/%m/%d') if start else datetime.today() + timedelta(days=(+1))
+ 17:     end = datetime.strptime(end, '%Y/%m/%d') if end else datetime.today()
+ 18:     return Book.objects.filter(publish_date__gte=start, publish_date__lte=end).all()
+ 19: 
+ 20: 
+ 21: @save_request
+--------------------------------------------------------------------------------
+[0.02424 s] survived
+   - [#   4] ASR library.methods:49 : 
+--------------------------------------------------------------------------------
+ 45: @save_request
+ 46: def buy_book_by_id(id):
+ 47:     b = Book.objects.get(id=id)
+ 48:     if b.available > 0:
+~49:         b.available += 1
+ 50:         b.save()
+ 51:         return 
+ 52:     else:
+ 53:         return 
+--------------------------------------------------------------------------------
+[0.02806 s] survived
+   - [#   5] COI library.methods:25 : 
+--------------------------------------------------------------------------------
+ 21: @save_request
+ 22: def get_books_by_name(name):
+ 23:     books = []
+ 24:     for b in Book.objects.all():
+~25:         if (not name in b.name):
+ 26:             books.append(b)
+ 27:     return books
+ 28: 
+ 29: 
+ 30: @save_request
+--------------------------------------------------------------------------------
+[0.02673 s] survived
+   - [#   6] COI library.methods:25 : 
+--------------------------------------------------------------------------------
+ 21: @save_request
+ 22: def get_books_by_name(name):
+ 23:     books = []
+ 24:     for b in Book.objects.all():
+~25:         if name not in b.name:
+ 26:             books.append(b)
+ 27:     return books
+ 28: 
+ 29: 
+ 30: @save_request
+--------------------------------------------------------------------------------
+[0.02592 s] survived
+   - [#   7] COI library.methods:34 : 
+--------------------------------------------------------------------------------
+ 30: @save_request
+ 31: def get_available_books():
+ 32:     books = []
+ 33:     for b in Book.objects.all():
+~34:         if (not b.available > 0):
+ 35:             books.append(b)
+ 36:     return books
+ 37: 
+ 38: 
+ 39: @save_request
+--------------------------------------------------------------------------------
+[0.04086 s] survived
+   - [#   8] COI library.methods:48 : 
+--------------------------------------------------------------------------------
+ 44: 
+ 45: @save_request
+ 46: def buy_book_by_id(id):
+ 47:     b = Book.objects.get(id=id)
+~48:     if (not b.available > 0):
+ 49:         b.available -= 1
+ 50:         b.save()
+ 51:         return 
+ 52:     else:
+ 53:         return 
+--------------------------------------------------------------------------------
+[0.02987 s] survived
+   - [#   9] CRP library.methods:9  : 
+--------------------------------------------------------------------------------
+  5: 
+  6: 
+  7: @save_request
+  8: def add_new_book(publish_date, price, name, desc, available, author):
+~ 9:     date = datetime.strptime(publish_date, 'mutpy')
+ 10:     Book.objects.create(publish_date=date, price=price, name=name, description=desc, available=available, author=author)
+ 11:     return 
+ 12: 
+ 13: 
+ 14: @save_request
+--------------------------------------------------------------------------------
+[0.02446 s] survived
+   - [#  10] CRP library.methods:9  : 
+--------------------------------------------------------------------------------
+  5: 
+  6: 
+  7: @save_request
+  8: def add_new_book(publish_date, price, name, desc, available, author):
+~ 9:     date = datetime.strptime(publish_date, '')
+ 10:     Book.objects.create(publish_date=date, price=price, name=name, description=desc, available=available, author=author)
+ 11:     return 
+ 12: 
+ 13: 
+ 14: @save_request
+--------------------------------------------------------------------------------
+[0.02610 s] survived
+   - [#  11] CRP library.methods:16 : 
+--------------------------------------------------------------------------------
+ 12: 
+ 13: 
+ 14: @save_request
+ 15: def get_books_by_date(start, end):
+~16:     start = datetime.strptime(start, 'mutpy') if start else datetime.today() + timedelta(days=(-1))
+ 17:     end = datetime.strptime(end, '%Y/%m/%d') if end else datetime.today()
+ 18:     return Book.objects.filter(publish_date__gte=start, publish_date__lte=end).all()
+ 19: 
+ 20: 
+ 21: @save_request
+--------------------------------------------------------------------------------
+[0.02591 s] survived
+   - [#  12] CRP library.methods:16 : 
+--------------------------------------------------------------------------------
+ 12: 
+ 13: 
+ 14: @save_request
+ 15: def get_books_by_date(start, end):
+~16:     start = datetime.strptime(start, '') if start else datetime.today() + timedelta(days=(-1))
+ 17:     end = datetime.strptime(end, '%Y/%m/%d') if end else datetime.today()
+ 18:     return Book.objects.filter(publish_date__gte=start, publish_date__lte=end).all()
+ 19: 
+ 20: 
+ 21: @save_request
+--------------------------------------------------------------------------------
+[0.02692 s] survived
+   - [#  13] CRP library.methods:16 : 
+--------------------------------------------------------------------------------
+ 12: 
+ 13: 
+ 14: @save_request
+ 15: def get_books_by_date(start, end):
+~16:     start = datetime.strptime(start, '%Y/%m/%d') if start else datetime.today() + timedelta(days=(-2))
+ 17:     end = datetime.strptime(end, '%Y/%m/%d') if end else datetime.today()
+ 18:     return Book.objects.filter(publish_date__gte=start, publish_date__lte=end).all()
+ 19: 
+ 20: 
+ 21: @save_request
+--------------------------------------------------------------------------------
+[0.02479 s] survived
+   - [#  14] CRP library.methods:17 : 
+--------------------------------------------------------------------------------
+ 13: 
+ 14: @save_request
+ 15: def get_books_by_date(start, end):
+ 16:     start = datetime.strptime(start, '%Y/%m/%d') if start else datetime.today() + timedelta(days=(-1))
+~17:     end = datetime.strptime(end, 'mutpy') if end else datetime.today()
+ 18:     return Book.objects.filter(publish_date__gte=start, publish_date__lte=end).all()
+ 19: 
+ 20: 
+ 21: @save_request
+ 22: def get_books_by_name(name):
+--------------------------------------------------------------------------------
+[0.02439 s] survived
+   - [#  15] CRP library.methods:17 : 
+--------------------------------------------------------------------------------
+ 13: 
+ 14: @save_request
+ 15: def get_books_by_date(start, end):
+ 16:     start = datetime.strptime(start, '%Y/%m/%d') if start else datetime.today() + timedelta(days=(-1))
+~17:     end = datetime.strptime(end, '') if end else datetime.today()
+ 18:     return Book.objects.filter(publish_date__gte=start, publish_date__lte=end).all()
+ 19: 
+ 20: 
+ 21: @save_request
+ 22: def get_books_by_name(name):
+--------------------------------------------------------------------------------
+[0.02488 s] survived
+   - [#  16] CRP library.methods:34 : 
+--------------------------------------------------------------------------------
+ 30: @save_request
+ 31: def get_available_books():
+ 32:     books = []
+ 33:     for b in Book.objects.all():
+~34:         if b.available > 1:
+ 35:             books.append(b)
+ 36:     return books
+ 37: 
+ 38: 
+ 39: @save_request
+--------------------------------------------------------------------------------
+[0.02612 s] survived
+   - [#  17] CRP library.methods:48 : 
+--------------------------------------------------------------------------------
+ 44: 
+ 45: @save_request
+ 46: def buy_book_by_id(id):
+ 47:     b = Book.objects.get(id=id)
+~48:     if b.available > 1:
+ 49:         b.available -= 1
+ 50:         b.save()
+ 51:         return 
+ 52:     else:
+ 53:         return 
+--------------------------------------------------------------------------------
+[0.02662 s] survived
+   - [#  18] CRP library.methods:49 : 
+--------------------------------------------------------------------------------
+ 45: @save_request
+ 46: def buy_book_by_id(id):
+ 47:     b = Book.objects.get(id=id)
+ 48:     if b.available > 0:
+~49:         b.available -= 2
+ 50:         b.save()
+ 51:         return 
+ 52:     else:
+ 53:         return 
+--------------------------------------------------------------------------------
+[0.02605 s] survived
+   - [#  19] DDL library.methods:7  : 
+--------------------------------------------------------------------------------
+  3: from library.models import Book
+  4: from ajax_testing.decorators import save_request
+  5: 
+  6: 
+~ 7: def add_new_book(publish_date, price, name, desc, available, author):
+  8:     
+  9:     date = datetime.strptime(publish_date, '%Y/%m/%d')
+ 10:     Book.objects.create(publish_date=date, price=price, name=name, description=desc, available=available, author=author)
+ 11:     return 
+ 12: 
+--------------------------------------------------------------------------------
+[0.02850 s] survived
+   - [#  20] DDL library.methods:14 : 
+--------------------------------------------------------------------------------
+ 10:     Book.objects.create(publish_date=date, price=price, name=name, description=desc, available=available, author=author)
+ 11:     return 
+ 12: 
+ 13: 
+~14: def get_books_by_date(start, end):
+ 15:     
+ 16:     start = datetime.strptime(start, '%Y/%m/%d') if start else datetime.today() + timedelta(days=(-1))
+ 17:     end = datetime.strptime(end, '%Y/%m/%d') if end else datetime.today()
+ 18:     return Book.objects.filter(publish_date__gte=start, publish_date__lte=end).all()
+ 19: 
+--------------------------------------------------------------------------------
+[0.02905 s] survived
+   - [#  21] DDL library.methods:21 : 
+--------------------------------------------------------------------------------
+ 17:     end = datetime.strptime(end, '%Y/%m/%d') if end else datetime.today()
+ 18:     return Book.objects.filter(publish_date__gte=start, publish_date__lte=end).all()
+ 19: 
+ 20: 
+~21: def get_books_by_name(name):
+ 22:     
+ 23:     books = []
+ 24:     for b in Book.objects.all():
+ 25:         if name in b.name:
+ 26:             books.append(b)
+--------------------------------------------------------------------------------
+[0.02645 s] survived
+   - [#  22] DDL library.methods:30 : 
+--------------------------------------------------------------------------------
+ 26:             books.append(b)
+ 27:     return books
+ 28: 
+ 29: 
+~30: def get_available_books():
+ 31:     
+ 32:     books = []
+ 33:     for b in Book.objects.all():
+ 34:         if b.available > 0:
+ 35:             books.append(b)
+--------------------------------------------------------------------------------
+[0.02645 s] survived
+   - [#  23] DDL library.methods:39 : 
+--------------------------------------------------------------------------------
+ 35:             books.append(b)
+ 36:     return books
+ 37: 
+ 38: 
+~39: def remove_book_by_id(id):
+ 40:     
+ 41:     Book.objects.get(id=id).delete()
+ 42:     return 
+ 43: 
+ 44: 
+--------------------------------------------------------------------------------
+[0.02720 s] survived
+   - [#  24] DDL library.methods:45 : 
+--------------------------------------------------------------------------------
+ 41:     Book.objects.get(id=id).delete()
+ 42:     return 
+ 43: 
+ 44: 
+~45: def buy_book_by_id(id):
+ 46:     
+ 47:     b = Book.objects.get(id=id)
+ 48:     if b.available > 0:
+ 49:         b.available -= 1
+ 50:         b.save()
+--------------------------------------------------------------------------------
+[0.02577 s] survived
+   - [#  25] ROR library.methods:34 : 
+--------------------------------------------------------------------------------
+ 30: @save_request
+ 31: def get_available_books():
+ 32:     books = []
+ 33:     for b in Book.objects.all():
+~34:         if b.available < 0:
+ 35:             books.append(b)
+ 36:     return books
+ 37: 
+ 38: 
+ 39: @save_request
+--------------------------------------------------------------------------------
+[0.02725 s] survived
+   - [#  26] ROR library.methods:34 : 
+--------------------------------------------------------------------------------
+ 30: @save_request
+ 31: def get_available_books():
+ 32:     books = []
+ 33:     for b in Book.objects.all():
+~34:         if b.available >= 0:
+ 35:             books.append(b)
+ 36:     return books
+ 37: 
+ 38: 
+ 39: @save_request
+--------------------------------------------------------------------------------
+[0.02549 s] survived
+   - [#  27] ROR library.methods:48 : 
+--------------------------------------------------------------------------------
+ 44: 
+ 45: @save_request
+ 46: def buy_book_by_id(id):
+ 47:     b = Book.objects.get(id=id)
+~48:     if b.available < 0:
+ 49:         b.available -= 1
+ 50:         b.save()
+ 51:         return 
+ 52:     else:
+ 53:         return 
+--------------------------------------------------------------------------------
+[0.02555 s] survived
+   - [#  28] ROR library.methods:48 : 
+--------------------------------------------------------------------------------
+ 44: 
+ 45: @save_request
+ 46: def buy_book_by_id(id):
+ 47:     b = Book.objects.get(id=id)
+~48:     if b.available >= 0:
+ 49:         b.available -= 1
+ 50:         b.save()
+ 51:         return 
+ 52:     else:
+ 53:         return 
+--------------------------------------------------------------------------------
+[0.02683 s] survived
+[*] Mutation score [1.66544 s]: 0.0%
+   - all: 28
+   - killed: 0 (0.0%)
+   - survived: 28 (100.0%)
+   - incompetent: 0 (0.0%)
+   - timeout: 0 (0.0%)
