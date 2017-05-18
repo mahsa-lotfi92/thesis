@@ -32,5 +32,8 @@ def get_sum(transactions):
 
 @save_request
 def remove_transaction_by_id(id):
-    Transaction.objects.get(id=id).delete()
-    return True
+    try:
+        Transaction.objects.get(id=id).delete()
+        return True
+    except Exception:
+        return False

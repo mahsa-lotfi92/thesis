@@ -10,7 +10,8 @@ from ajax_testing.decorators import save_request
 @save_request
 def add_income(request):
     add_transaction(request.GET['date'], request.GET['amount'], True)
-    return HttpResponse(status=200)
+    status = 200
+    return HttpResponse(status=status)
     # return render_to_response('accounting.html', {'transactions': Transaction.objects.all()})
 
 
@@ -39,5 +40,5 @@ def filter_by_date(request):
 
 @save_request
 def remove_transaction(request, id):
-    remove_transaction_by_id(id)
-    return render(request, 'accounting.html', {'transactions': Transaction.objects.all()})
+    res = remove_transaction_by_id(id)
+    return render(request, 'accounting.html', {'transactions': Transaction.objects.all()}, status=200 if res else 500)

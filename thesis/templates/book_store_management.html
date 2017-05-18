@@ -1,0 +1,71 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <script type="text/javascript" src="{% static 'js/jquery-1.11.2.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/home.js' %}"></script>
+    <title>کتاب فروشی الکترونیکی</title>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <form action="/library/add_book">
+                <div class="panel panel-danger">
+                    {% csrf_token %}
+                    <div class="panel-heading">
+                        افزودن کتاب
+                    </div>
+                    <div class="panel-body">
+                        <input type="text" name="name" placeholder="نام">
+                        <input type="text" name="author" placeholder="نویسنده">
+                        <input type="text" name="date" placeholder="تاریخ نشر">
+                        <input type="text" name="price" placeholder="مبلغ">
+                        <input type="text" name="available" placeholder="تعداد">
+                        <textarea name="desc" class="form-control" placeholder="خلاصه"></textarea>
+                        <button class="submit">افزودن</button>
+
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-xs-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    لیست کتاب‌ها
+                </div>
+                <div class="panel-body">
+                    <table class="table table-bordered tr-table">
+                        <thead>
+                        <tr>
+                            <th>نام کتاب</th>
+                            <th>نویسنده</th>
+                            <th>موجودی</th>
+                            <th>قیمت</th>
+                            <th>حذف</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for b in books %}
+                            <tr>
+                                <td>{{ b.name }}</td>
+                                <td>{{ b.author }}</td>
+                                <td>{{ b.available }}</td>
+                                <td>{{ b.price }}</td>
+                                <td><form action="/library/remove_book/{{ b.id }}"><button class="submit btn btn-danger">حذف</button></form></td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

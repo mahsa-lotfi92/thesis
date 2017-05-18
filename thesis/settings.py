@@ -25,7 +25,7 @@ SECRET_KEY = '2vffr!qk-w$t_@#rvonc9+#+wxfd*r$eav@-)dr#fd566bw%q%'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['testserver', 'localhost']
 
 
 # Application definition
@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django_nose',
     'ajax_testing',
     'accounting',
+    'library',
 ]
 
 MIDDLEWARE = [
@@ -93,10 +94,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        'TEST':{
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        }
+        # 'TEST':{
+        #     'ENGINE': 'django.db.backends.sqlite3',
+        #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        # }
     }
 }
 
@@ -134,6 +135,9 @@ USE_L10N = True
 USE_TZ = False
 
 
+# NOSE_ARGS = ['--nocapture',
+#              '--nologcapture',]
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
@@ -142,4 +146,4 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "thesis/static"),
 ]
 
-SAVING_MODE = True
+SAVING_MODE = False

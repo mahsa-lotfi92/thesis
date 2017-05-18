@@ -7,3 +7,9 @@ body{
 .tr-table{
     margin-top: 30px;
 }
+
+.book-card{
+    border: 1px solid #ddd;
+    text-align: center;
+    padding: 10px;
+}

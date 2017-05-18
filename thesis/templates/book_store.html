@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <script type="text/javascript" src="{% static 'js/jquery-1.11.2.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/home.js' %}"></script>
+    <title>حسابداری شخصی</title>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <form action="/library/filter_by_date">
+            <div class="col-xs-6">
+                <div class="panel panel-info">
+
+                    <div class="panel-heading">
+                        فیلتر بر اساس تاریخ نشر
+                    </div>
+
+                    <div class="panel-body">
+
+                        از
+                        <input type="text" name="start" placeholder="تاریخ">
+                        تا
+                        <input type="text" name="end" placeholder="تاریخ">
+
+                        <button class="submit">فیلتر</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <form action="/library/filter_by_name">
+
+            <div class="col-xs-6">
+                <div class="panel panel-info">
+
+                    <div class="panel-heading">
+                        فیلتر بر اساس  نام
+                    </div>
+
+                    <div class="panel-body">
+                        <input type="text" name="name" placeholder="نام">
+                        <button class="submit">فیلتر</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <div class="col-xs-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    لیست کتاب‌ها
+                </div>
+                <div class="panel-body">
+                        {% for b in books %}
+                            <div class="book-card col-xs-3">
+                                <img width="100%" src="{% static 'img/book.jpeg' %}" alt="">
+                                <div>{{ b.name }}</div>
+                                <div>نوشته‌ی {{ b.author }}</div>
+                                <div>{% if b.available > 0 %} موجود {% else %} ناموجود {% endif %}</div>
+                                <div>{{ b.price }}</div>
+                                <span><form action="/library/buy_book/{{ b.id }}"><button class="submit btn btn-success">خرید</button></form></span>
+                            </div>
+                        {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

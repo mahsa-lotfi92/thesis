@@ -1,0 +1,452 @@
+[*] Start mutation process:
+   - targets: accounting.views
+   - tests: accounting.tests
+[*] 1 tests passed:
+   - accounting.tests [0.03617 s]
+[*] Start mutants generation and execution:
+   - [#   1] AOR accounting.views:37 : 
+--------------------------------------------------------------------------------
+ 33:     start = request.GET['start']
+ 34:     end = request.GET['end']
+ 35:     transactions = get_transactions_by_date(start, end)
+ 36:     (get, paid) = get_sum(transactions)
+~37:     return render_to_response('accounting.html', {'transactions': transactions, 'paid': paid, 'get': get, 'reminded': get + paid})
+ 38: 
+ 39: 
+ 40: @save_request
+ 41: def remove_transaction(request, id):
+ 42:     remove_transaction_by_id(id)
+--------------------------------------------------------------------------------
+[0.04586 s] killed by test_collected_data (accounting.tests.AccountingTest)
+   - [#   2] CRP accounting.views:12 : 
+--------------------------------------------------------------------------------
+  8: 
+  9: 
+ 10: @save_request
+ 11: def add_income(request):
+~12:     add_transaction(request.GET['mutpy'], request.GET['amount'], )
+ 13:     return HttpResponse(status=200)
+ 14: 
+ 15: 
+ 16: 
+ 17: @save_request
+--------------------------------------------------------------------------------
+[0.03354 s] killed by test_collected_data (accounting.tests.AccountingTest)
+   - [#   3] CRP accounting.views:12 : 
+--------------------------------------------------------------------------------
+  8: 
+  9: 
+ 10: @save_request
+ 11: def add_income(request):
+~12:     add_transaction(request.GET[''], request.GET['amount'], )
+ 13:     return HttpResponse(status=200)
+ 14: 
+ 15: 
+ 16: 
+ 17: @save_request
+--------------------------------------------------------------------------------
+[0.02954 s] killed by test_collected_data (accounting.tests.AccountingTest)
+   - [#   4] CRP accounting.views:12 : 
+--------------------------------------------------------------------------------
+  8: 
+  9: 
+ 10: @save_request
+ 11: def add_income(request):
+~12:     add_transaction(request.GET['date'], request.GET['mutpy'], )
+ 13:     return HttpResponse(status=200)
+ 14: 
+ 15: 
+ 16: 
+ 17: @save_request
+--------------------------------------------------------------------------------
+[0.02747 s] killed by test_collected_data (accounting.tests.AccountingTest)
+   - [#   5] CRP accounting.views:12 : 
+--------------------------------------------------------------------------------
+  8: 
+  9: 
+ 10: @save_request
+ 11: def add_income(request):
+~12:     add_transaction(request.GET['date'], request.GET[''], )
+ 13:     return HttpResponse(status=200)
+ 14: 
+ 15: 
+ 16: 
+ 17: @save_request
+--------------------------------------------------------------------------------
+[0.02907 s] killed by test_collected_data (accounting.tests.AccountingTest)
+   - [#   6] CRP accounting.views:13 : 
+--------------------------------------------------------------------------------
+  9: 
+ 10: @save_request
+ 11: def add_income(request):
+ 12:     add_transaction(request.GET['date'], request.GET['amount'], )
+~13:     return HttpResponse(status=201)
+ 14: 
+ 15: 
+ 16: 
+ 17: @save_request
+ 18: def add_outgoing(request):
+--------------------------------------------------------------------------------
+[0.03769 s] survived
+   - [#   7] CRP accounting.views:19 : 
+--------------------------------------------------------------------------------
+ 15: 
+ 16: 
+ 17: @save_request
+ 18: def add_outgoing(request):
+~19:     date = request.GET['mutpy']
+ 20:     amount = request.GET['amount']
+ 21:     add_transaction(date, amount)
+ 22:     return HttpResponse(status=200)
+ 23: 
+ 24: 
+--------------------------------------------------------------------------------
+[0.03097 s] killed by test_collected_data (accounting.tests.AccountingTest)
+   - [#   8] CRP accounting.views:19 : 
+--------------------------------------------------------------------------------
+ 15: 
+ 16: 
+ 17: @save_request
+ 18: def add_outgoing(request):
+~19:     date = request.GET['']
+ 20:     amount = request.GET['amount']
+ 21:     add_transaction(date, amount)
+ 22:     return HttpResponse(status=200)
+ 23: 
+ 24: 
+--------------------------------------------------------------------------------
+[0.02762 s] killed by test_collected_data (accounting.tests.AccountingTest)
+   - [#   9] CRP accounting.views:20 : 
+--------------------------------------------------------------------------------
+ 16: 
+ 17: @save_request
+ 18: def add_outgoing(request):
+ 19:     date = request.GET['date']
+~20:     amount = request.GET['mutpy']
+ 21:     add_transaction(date, amount)
+ 22:     return HttpResponse(status=200)
+ 23: 
+ 24: 
+ 25: 
+--------------------------------------------------------------------------------
+[0.03196 s] killed by test_collected_data (accounting.tests.AccountingTest)
+   - [#  10] CRP accounting.views:20 : 
+--------------------------------------------------------------------------------
+ 16: 
+ 17: @save_request
+ 18: def add_outgoing(request):
+ 19:     date = request.GET['date']
+~20:     amount = request.GET['']
+ 21:     add_transaction(date, amount)
+ 22:     return HttpResponse(status=200)
+ 23: 
+ 24: 
+ 25: 
+--------------------------------------------------------------------------------
+[0.03032 s] killed by test_collected_data (accounting.tests.AccountingTest)
+   - [#  11] CRP accounting.views:22 : 
+--------------------------------------------------------------------------------
+ 18: def add_outgoing(request):
+ 19:     date = request.GET['date']
+ 20:     amount = request.GET['amount']
+ 21:     add_transaction(date, amount)
+~22:     return HttpResponse(status=201)
+ 23: 
+ 24: 
+ 25: 
+ 26: def list_transactions(request):
+ 27:     transactions = Transaction.objects.all()
+--------------------------------------------------------------------------------
+[0.03366 s] survived
+   - [#  12] CRP accounting.views:28 : 
+--------------------------------------------------------------------------------
+ 29: 
+ 30: 
+ 31: @save_request
+ 32: def filter_by_date(request):
+~33:     start = request.GET['mutpy']
+ 34:     end = request.GET['end']
+ 35:     transactions = get_transactions_by_date(start, end)
+ 36:     (get, paid) = get_sum(transactions)
+ 37:     return render_to_response('accounting.html', {'transactions': transactions, 'paid': paid, 'get': get, 'reminded': get - paid})
+ 38: 
+--------------------------------------------------------------------------------
+[0.02255 s] killed by test_collected_data (accounting.tests.AccountingTest)
+   - [#  17] CRP accounting.views:33 : 
+--------------------------------------------------------------------------------
+ 29: 
+ 30: 
+ 31: @save_request
+ 32: def filter_by_date(request):
+~33:     start = request.GET['']
+ 34:     end = request.GET['end']
+ 35:     transactions = get_transactions_by_date(start, end)
+ 36:     (get, paid) = get_sum(transactions)
+ 37:     return render_to_response('accounting.html', {'transactions': transactions, 'paid': paid, 'get': get, 'reminded': get - paid})
+ 38: 
+--------------------------------------------------------------------------------
+[0.02078 s] killed by test_collected_data (accounting.tests.AccountingTest)
+   - [#  18] CRP accounting.views:34 : 
+--------------------------------------------------------------------------------
+ 30: 
+ 31: @save_request
+ 32: def filter_by_date(request):
+ 33:     start = request.GET['start']
+~34:     end = request.GET['mutpy']
+ 35:     transactions = get_transactions_by_date(start, end)
+ 36:     (get, paid) = get_sum(transactions)
+ 37:     return render_to_response('accounting.html', {'transactions': transactions, 'paid': paid, 'get': get, 'reminded': get - paid})
+ 38: 
+ 39: 
+--------------------------------------------------------------------------------
+[0.02069 s] killed by test_collected_data (accounting.tests.AccountingTest)
+   - [#  19] CRP accounting.views:34 : 
+--------------------------------------------------------------------------------
+ 30: 
+ 31: @save_request
+ 32: def filter_by_date(request):
+ 33:     start = request.GET['start']
+~34:     end = request.GET['']
+ 35:     transactions = get_transactions_by_date(start, end)
+ 36:     (get, paid) = get_sum(transactions)
+ 37:     return render_to_response('accounting.html', {'transactions': transactions, 'paid': paid, 'get': get, 'reminded': get - paid})
+ 38: 
+ 39: 
+--------------------------------------------------------------------------------
+[0.02192 s] killed by test_collected_data (accounting.tests.AccountingTest)
+   - [#  20] CRP accounting.views:37 : 
+--------------------------------------------------------------------------------
+ 33:     start = request.GET['start']
+ 34:     end = request.GET['end']
+ 35:     transactions = get_transactions_by_date(start, end)
+ 36:     (get, paid) = get_sum(transactions)
+~37:     return render_to_response('mutpy', {'transactions': transactions, 'paid': paid, 'get': get, 'reminded': get - paid})
+ 38: 
+ 39: 
+ 40: @save_request
+ 41: def remove_transaction(request, id):
+ 42:     remove_transaction_by_id(id)
+--------------------------------------------------------------------------------
+[0.02398 s] killed by test_collected_data (accounting.tests.AccountingTest)
+   - [#  21] CRP accounting.views:37 : 
+--------------------------------------------------------------------------------
+ 33:     start = request.GET['start']
+ 34:     end = request.GET['end']
+ 35:     transactions = get_transactions_by_date(start, end)
+ 36:     (get, paid) = get_sum(transactions)
+~37:     return render_to_response('', {'transactions': transactions, 'paid': paid, 'get': get, 'reminded': get - paid})
+ 38: 
+ 39: 
+ 40: @save_request
+ 41: def remove_transaction(request, id):
+ 42:     remove_transaction_by_id(id)
+--------------------------------------------------------------------------------
+[0.02265 s] killed by test_collected_data (accounting.tests.AccountingTest)
+   - [#  22] CRP accounting.views:37 : 
+--------------------------------------------------------------------------------
+ 33:     start = request.GET['start']
+ 34:     end = request.GET['end']
+ 35:     transactions = get_transactions_by_date(start, end)
+ 36:     (get, paid) = get_sum(transactions)
+~37:     return render_to_response('accounting.html', {'mutpy': transactions, 'paid': paid, 'get': get, 'reminded': get - paid})
+ 38: 
+ 39: 
+ 40: @save_request
+ 41: def remove_transaction(request, id):
+ 42:     remove_transaction_by_id(id)
+--------------------------------------------------------------------------------
+[0.02513 s] killed by test_collected_data (accounting.tests.AccountingTest)
+   - [#  23] CRP accounting.views:37 : 
+--------------------------------------------------------------------------------
+ 33:     start = request.GET['start']
+ 34:     end = request.GET['end']
+ 35:     transactions = get_transactions_by_date(start, end)
+ 36:     (get, paid) = get_sum(transactions)
+~37:     return render_to_response('accounting.html', {'': transactions, 'paid': paid, 'get': get, 'reminded': get - paid})
+ 38: 
+ 39: 
+ 40: @save_request
+ 41: def remove_transaction(request, id):
+ 42:     remove_transaction_by_id(id)
+--------------------------------------------------------------------------------
+[0.02723 s] killed by test_collected_data (accounting.tests.AccountingTest)
+   - [#  24] CRP accounting.views:37 : 
+--------------------------------------------------------------------------------
+ 33:     start = request.GET['start']
+ 34:     end = request.GET['end']
+ 35:     transactions = get_transactions_by_date(start, end)
+ 36:     (get, paid) = get_sum(transactions)
+~37:     return render_to_response('accounting.html', {'transactions': transactions, 'mutpy': paid, 'get': get, 'reminded': get - paid})
+ 38: 
+ 39: 
+ 40: @save_request
+ 41: def remove_transaction(request, id):
+ 42:     remove_transaction_by_id(id)
+--------------------------------------------------------------------------------
+[0.02415 s] killed by test_collected_data (accounting.tests.AccountingTest)
+   - [#  25] CRP accounting.views:37 : 
+--------------------------------------------------------------------------------
+ 33:     start = request.GET['start']
+ 34:     end = request.GET['end']
+ 35:     transactions = get_transactions_by_date(start, end)
+ 36:     (get, paid) = get_sum(transactions)
+~37:     return render_to_response('accounting.html', {'transactions': transactions, '': paid, 'get': get, 'reminded': get - paid})
+ 38: 
+ 39: 
+ 40: @save_request
+ 41: def remove_transaction(request, id):
+ 42:     remove_transaction_by_id(id)
+--------------------------------------------------------------------------------
+[0.02508 s] killed by test_collected_data (accounting.tests.AccountingTest)
+   - [#  26] CRP accounting.views:37 : 
+--------------------------------------------------------------------------------
+ 33:     start = request.GET['start']
+ 34:     end = request.GET['end']
+ 35:     transactions = get_transactions_by_date(start, end)
+ 36:     (get, paid) = get_sum(transactions)
+~37:     return render_to_response('accounting.html', {'transactions': transactions, 'paid': paid, 'mutpy': get, 'reminded': get - paid})
+ 38: 
+ 39: 
+ 40: @save_request
+ 41: def remove_transaction(request, id):
+ 42:     remove_transaction_by_id(id)
+--------------------------------------------------------------------------------
+[0.02403 s] killed by test_collected_data (accounting.tests.AccountingTest)
+   - [#  27] CRP accounting.views:37 : 
+--------------------------------------------------------------------------------
+ 33:     start = request.GET['start']
+ 34:     end = request.GET['end']
+ 35:     transactions = get_transactions_by_date(start, end)
+ 36:     (get, paid) = get_sum(transactions)
+~37:     return render_to_response('accounting.html', {'transactions': transactions, 'paid': paid, '': get, 'reminded': get - paid})
+ 38: 
+ 39: 
+ 40: @save_request
+ 41: def remove_transaction(request, id):
+ 42:     remove_transaction_by_id(id)
+--------------------------------------------------------------------------------
+[0.02698 s] killed by test_collected_data (accounting.tests.AccountingTest)
+   - [#  28] CRP accounting.views:37 : 
+--------------------------------------------------------------------------------
+ 33:     start = request.GET['start']
+ 34:     end = request.GET['end']
+ 35:     transactions = get_transactions_by_date(start, end)
+ 36:     (get, paid) = get_sum(transactions)
+~37:     return render_to_response('accounting.html', {'transactions': transactions, 'paid': paid, 'get': get, 'mutpy': get - paid})
+ 38: 
+ 39: 
+ 40: @save_request
+ 41: def remove_transaction(request, id):
+ 42:     remove_transaction_by_id(id)
+--------------------------------------------------------------------------------
+[0.02419 s] killed by test_collected_data (accounting.tests.AccountingTest)
+   - [#  29] CRP accounting.views:37 : 
+--------------------------------------------------------------------------------
+ 33:     start = request.GET['start']
+ 34:     end = request.GET['end']
+ 35:     transactions = get_transactions_by_date(start, end)
+ 36:     (get, paid) = get_sum(transactions)
+~37:     return render_to_response('accounting.html', {'transactions': transactions, 'paid': paid, 'get': get, '': get - paid})
+ 38: 
+ 39: 
+ 40: @save_request
+ 41: def remove_transaction(request, id):
+ 42:     remove_transaction_by_id(id)
+--------------------------------------------------------------------------------
+[0.02358 s] killed by test_collected_data (accounting.tests.AccountingTest)
+   - [#  30] CRP accounting.views:43 : 
+--------------------------------------------------------------------------------
+ 39: 
+ 40: @save_request
+ 41: def remove_transaction(request, id):
+ 42:     remove_transaction_by_id(id)
+~43:     return render(request, 'mutpy', {'transactions': Transaction.objects.all()})
+--------------------------------------------------------------------------------
+[0.03117 s] survived
+   - [#  31] CRP accounting.views:43 : 
+--------------------------------------------------------------------------------
+ 39: 
+ 40: @save_request
+ 41: def remove_transaction(request, id):
+ 42:     remove_transaction_by_id(id)
+~43:     return render(request, '', {'transactions': Transaction.objects.all()})
+--------------------------------------------------------------------------------
+[0.03405 s] survived
+   - [#  32] CRP accounting.views:43 : 
+--------------------------------------------------------------------------------
+ 39: 
+ 40: @save_request
+ 41: def remove_transaction(request, id):
+ 42:     remove_transaction_by_id(id)
+~43:     return render(request, 'accounting.html', {'mutpy': Transaction.objects.all()})
+--------------------------------------------------------------------------------
+[0.03148 s] survived
+   - [#  33] CRP accounting.views:43 : 
+--------------------------------------------------------------------------------
+ 39: 
+ 40: @save_request
+ 41: def remove_transaction(request, id):
+ 42:     remove_transaction_by_id(id)
+~43:     return render(request, 'accounting.html', {'': Transaction.objects.all()})
+--------------------------------------------------------------------------------
+[0.03255 s] survived
+   - [#  34] DDL accounting.views:10 : 
+--------------------------------------------------------------------------------
+  6: from accounting.models import Transaction
+  7: from ajax_testing.decorators import save_request
+  8: 
+  9: 
+~10: def add_income(request):
+ 11:     
+ 12:     add_transaction(request.GET['date'], request.GET['amount'], )
+ 13:     return HttpResponse(status=200)
+ 14: 
+ 15: 
+--------------------------------------------------------------------------------
+[0.03057 s] survived
+   - [#  35] DDL accounting.views:17 : 
+--------------------------------------------------------------------------------
+ 13:     return HttpResponse(status=200)
+ 14: 
+ 15: 
+ 16: 
+~17: def add_outgoing(request):
+ 18:     
+ 19:     date = request.GET['date']
+ 20:     amount = request.GET['amount']
+ 21:     add_transaction(date, amount)
+ 22:     return HttpResponse(status=200)
+--------------------------------------------------------------------------------
+[0.03302 s] survived
+   - [#  36] DDL accounting.views:31 : 
+--------------------------------------------------------------------------------
+ 27:     transactions = Transaction.objects.all()
+ 28:     return render(request, 'accounting.html', {'transactions': transactions})
+ 29: 
+ 30: 
+~31: def filter_by_date(request):
+ 32:     
+ 33:     start = request.GET['start']
+ 34:     end = request.GET['end']
+ 35:     transactions = get_transactions_by_date(start, end)
+ 36:     (get, paid) = get_sum(transactions)
+--------------------------------------------------------------------------------
+[0.03110 s] survived
+   - [#  37] DDL accounting.views:40 : 
+--------------------------------------------------------------------------------
+ 36:     (get, paid) = get_sum(transactions)
+ 37:     return render_to_response('accounting.html', {'transactions': transactions, 'paid': paid, 'get': get, 'reminded': get - paid})
+ 38: 
+ 39: 
+~40: def remove_transaction(request, id):
+ 41:     
+ 42:     remove_transaction_by_id(id)
+ 43:     return render(request, 'accounting.html', {'transactions': Transaction.objects.all()})
+--------------------------------------------------------------------------------
+[0.03430 s] survived
+[*] Mutation score [1.82379 s]: 69.7%
+   - all: 33
+   - killed: 23 (69.7%)
+   - survived: 10 (30.3%)
+   - incompetent: 0 (0.0%)
+   - timeout: 0 (0.0%)

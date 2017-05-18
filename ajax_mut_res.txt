@@ -1,0 +1,146 @@
+[*] Start mutation process:
+   - targets: ajax_testing.methods
+   - tests: ajax_testing.tests
+[*] 1 tests passed:
+   - ajax_testing.tests [0.00534 s]
+[*] Start mutants generation and execution:
+   - [#   1] AOR ajax_testing.methods:11 : 
+--------------------------------------------------------------------------------
+  7: def get_week(date):
+  8:     pattern = '(?P<year>\\d{4})\\/(?P<month>\\d{2})\\/(?P<day>\\d{2})'
+  9:     res = re.match(pattern, date)
+ 10:     date = datetime(day=int(res.group('day')), month=int(res.group('month')), year=int(res.group('year')))
+~11:     return str(date.weekday() - 2 % 7)
+--------------------------------------------------------------------------------
+[0.03045 s] killed by test_collected_data (ajax_testing.tests.GetWeekTest)
+   - [#   2] AOR ajax_testing.methods:11 : 
+--------------------------------------------------------------------------------
+  7: def get_week(date):
+  8:     pattern = '(?P<year>\\d{4})\\/(?P<month>\\d{2})\\/(?P<day>\\d{2})'
+  9:     res = re.match(pattern, date)
+ 10:     date = datetime(day=int(res.group('day')), month=int(res.group('month')), year=int(res.group('year')))
+~11:     return str(date.weekday() + 2 * 7)
+--------------------------------------------------------------------------------
+[0.01892 s] killed by test_collected_data (ajax_testing.tests.GetWeekTest)
+   - [#   3] CRP ajax_testing.methods:8  : 
+--------------------------------------------------------------------------------
+  4: from ajax_testing.decorators import save_request
+  5: 
+  6: @save_request
+  7: def get_week(date):
+~ 8:     pattern = 'mutpy'
+  9:     res = re.match(pattern, date)
+ 10:     date = datetime(day=int(res.group('day')), month=int(res.group('month')), year=int(res.group('year')))
+ 11:     return str(date.weekday() + 2 % 7)
+--------------------------------------------------------------------------------
+[0.02199 s] killed by test_collected_data (ajax_testing.tests.GetWeekTest)
+   - [#   4] CRP ajax_testing.methods:8  : 
+--------------------------------------------------------------------------------
+  4: from ajax_testing.decorators import save_request
+  5: 
+  6: @save_request
+  7: def get_week(date):
+~ 8:     pattern = ''
+  9:     res = re.match(pattern, date)
+ 10:     date = datetime(day=int(res.group('day')), month=int(res.group('month')), year=int(res.group('year')))
+ 11:     return str(date.weekday() + 2 % 7)
+--------------------------------------------------------------------------------
+[0.01465 s] killed by test_collected_data (ajax_testing.tests.GetWeekTest)
+   - [#   5] CRP ajax_testing.methods:10 : 
+--------------------------------------------------------------------------------
+  6: @save_request
+  7: def get_week(date):
+  8:     pattern = '(?P<year>\\d{4})\\/(?P<month>\\d{2})\\/(?P<day>\\d{2})'
+  9:     res = re.match(pattern, date)
+~10:     date = datetime(day=int(res.group('mutpy')), month=int(res.group('month')), year=int(res.group('year')))
+ 11:     return str(date.weekday() + 2 % 7)
+--------------------------------------------------------------------------------
+[0.01691 s] killed by test_collected_data (ajax_testing.tests.GetWeekTest)
+   - [#   6] CRP ajax_testing.methods:10 : 
+--------------------------------------------------------------------------------
+  6: @save_request
+  7: def get_week(date):
+  8:     pattern = '(?P<year>\\d{4})\\/(?P<month>\\d{2})\\/(?P<day>\\d{2})'
+  9:     res = re.match(pattern, date)
+~10:     date = datetime(day=int(res.group('')), month=int(res.group('month')), year=int(res.group('year')))
+ 11:     return str(date.weekday() + 2 % 7)
+--------------------------------------------------------------------------------
+[0.02170 s] killed by test_collected_data (ajax_testing.tests.GetWeekTest)
+   - [#   7] CRP ajax_testing.methods:10 : 
+--------------------------------------------------------------------------------
+  6: @save_request
+  7: def get_week(date):
+  8:     pattern = '(?P<year>\\d{4})\\/(?P<month>\\d{2})\\/(?P<day>\\d{2})'
+  9:     res = re.match(pattern, date)
+~10:     date = datetime(day=int(res.group('day')), month=int(res.group('mutpy')), year=int(res.group('year')))
+ 11:     return str(date.weekday() + 2 % 7)
+--------------------------------------------------------------------------------
+[0.02052 s] killed by test_collected_data (ajax_testing.tests.GetWeekTest)
+   - [#   8] CRP ajax_testing.methods:10 : 
+--------------------------------------------------------------------------------
+  6: @save_request
+  7: def get_week(date):
+  8:     pattern = '(?P<year>\\d{4})\\/(?P<month>\\d{2})\\/(?P<day>\\d{2})'
+  9:     res = re.match(pattern, date)
+~10:     date = datetime(day=int(res.group('day')), month=int(res.group('')), year=int(res.group('year')))
+ 11:     return str(date.weekday() + 2 % 7)
+--------------------------------------------------------------------------------
+[0.01454 s] killed by test_collected_data (ajax_testing.tests.GetWeekTest)
+   - [#   9] CRP ajax_testing.methods:10 : 
+--------------------------------------------------------------------------------
+  6: @save_request
+  7: def get_week(date):
+  8:     pattern = '(?P<year>\\d{4})\\/(?P<month>\\d{2})\\/(?P<day>\\d{2})'
+  9:     res = re.match(pattern, date)
+~10:     date = datetime(day=int(res.group('day')), month=int(res.group('month')), year=int(res.group('mutpy')))
+ 11:     return str(date.weekday() + 2 % 7)
+--------------------------------------------------------------------------------
+[0.01759 s] killed by test_collected_data (ajax_testing.tests.GetWeekTest)
+   - [#  10] CRP ajax_testing.methods:10 : 
+--------------------------------------------------------------------------------
+  6: @save_request
+  7: def get_week(date):
+  8:     pattern = '(?P<year>\\d{4})\\/(?P<month>\\d{2})\\/(?P<day>\\d{2})'
+  9:     res = re.match(pattern, date)
+~10:     date = datetime(day=int(res.group('day')), month=int(res.group('month')), year=int(res.group('')))
+ 11:     return str(date.weekday() + 2 % 7)
+--------------------------------------------------------------------------------
+[0.01564 s] killed by test_collected_data (ajax_testing.tests.GetWeekTest)
+   - [#  11] CRP ajax_testing.methods:11 : 
+--------------------------------------------------------------------------------
+  7: def get_week(date):
+  8:     pattern = '(?P<year>\\d{4})\\/(?P<month>\\d{2})\\/(?P<day>\\d{2})'
+  9:     res = re.match(pattern, date)
+ 10:     date = datetime(day=int(res.group('day')), month=int(res.group('month')), year=int(res.group('year')))
+~11:     return str(date.weekday() + 3 % 7)
+--------------------------------------------------------------------------------
+[0.01604 s] killed by test_collected_data (ajax_testing.tests.GetWeekTest)
+   - [#  12] CRP ajax_testing.methods:11 : 
+--------------------------------------------------------------------------------
+  7: def get_week(date):
+  8:     pattern = '(?P<year>\\d{4})\\/(?P<month>\\d{2})\\/(?P<day>\\d{2})'
+  9:     res = re.match(pattern, date)
+ 10:     date = datetime(day=int(res.group('day')), month=int(res.group('month')), year=int(res.group('year')))
+~11:     return str(date.weekday() + 2 % 8)
+--------------------------------------------------------------------------------
+[0.01531 s] killed by test_collected_data (ajax_testing.tests.GetWeekTest)
+   - [#  13] DDL ajax_testing.methods:6  : 
+--------------------------------------------------------------------------------
+  2: from datetime import datetime
+  3: 
+  4: from ajax_testing.decorators import save_request
+  5: 
+~ 6: def get_week(date):
+  7:     
+  8:     pattern = '(?P<year>\\d{4})\\/(?P<month>\\d{2})\\/(?P<day>\\d{2})'
+  9:     res = re.match(pattern, date)
+ 10:     date = datetime(day=int(res.group('day')), month=int(res.group('month')), year=int(res.group('year')))
+ 11:     return str(date.weekday() + 2 % 7)
+--------------------------------------------------------------------------------
+[0.01326 s] survived
+[*] Mutation score [0.71932 s]: 92.3%
+   - all: 13
+   - killed: 12 (92.3%)
+   - survived: 1 (7.7%)
+   - incompetent: 0 (0.0%)
+   - timeout: 0 (0.0%)

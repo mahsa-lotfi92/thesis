@@ -1,0 +1,474 @@
+[*] Start mutation process:
+   - targets: library.views
+   - tests: library.tests
+[*] 1 tests passed:
+   - library.tests [0.09213 s]
+[*] Start mutants generation and execution:
+   - [#   1] CRP library.views:10 : 
+--------------------------------------------------------------------------------
+  6: 
+  7: 
+  8: @save_request
+  9: def add_book(request):
+~10:     publish_date = request.GET['mutpy']
+ 11:     price = request.GET['price']
+ 12:     name = request.GET['name']
+ 13:     desc = request.GET['desc']
+ 14:     available = request.GET['available']
+ 15:     author = request.GET['author']
+--------------------------------------------------------------------------------
+[0.08891 s] killed by test_collected_data (library.tests.LibraryTest)
+   - [#   2] CRP library.views:10 : 
+--------------------------------------------------------------------------------
+  6: 
+  7: 
+  8: @save_request
+  9: def add_book(request):
+~10:     publish_date = request.GET['']
+ 11:     price = request.GET['price']
+ 12:     name = request.GET['name']
+ 13:     desc = request.GET['desc']
+ 14:     available = request.GET['available']
+ 15:     author = request.GET['author']
+--------------------------------------------------------------------------------
+[0.08818 s] killed by test_collected_data (library.tests.LibraryTest)
+   - [#   3] CRP library.views:11 : 
+--------------------------------------------------------------------------------
+  7: 
+  8: @save_request
+  9: def add_book(request):
+ 10:     publish_date = request.GET['date']
+~11:     price = request.GET['mutpy']
+ 12:     name = request.GET['name']
+ 13:     desc = request.GET['desc']
+ 14:     available = request.GET['available']
+ 15:     author = request.GET['author']
+ 16:     
+--------------------------------------------------------------------------------
+[0.07553 s] killed by test_collected_data (library.tests.LibraryTest)
+   - [#   4] CRP library.views:11 : 
+--------------------------------------------------------------------------------
+  7: 
+  8: @save_request
+  9: def add_book(request):
+ 10:     publish_date = request.GET['date']
+~11:     price = request.GET['']
+ 12:     name = request.GET['name']
+ 13:     desc = request.GET['desc']
+ 14:     available = request.GET['available']
+ 15:     author = request.GET['author']
+ 16:     
+--------------------------------------------------------------------------------
+[0.07778 s] killed by test_collected_data (library.tests.LibraryTest)
+   - [#   5] CRP library.views:12 : 
+--------------------------------------------------------------------------------
+  8: @save_request
+  9: def add_book(request):
+ 10:     publish_date = request.GET['date']
+ 11:     price = request.GET['price']
+~12:     name = request.GET['mutpy']
+ 13:     desc = request.GET['desc']
+ 14:     available = request.GET['available']
+ 15:     author = request.GET['author']
+ 16:     
+ 17:     add_new_book(publish_date, price, name, desc, available, author)
+--------------------------------------------------------------------------------
+[0.08024 s] killed by test_collected_data (library.tests.LibraryTest)
+   - [#   6] CRP library.views:12 : 
+--------------------------------------------------------------------------------
+  8: @save_request
+  9: def add_book(request):
+ 10:     publish_date = request.GET['date']
+ 11:     price = request.GET['price']
+~12:     name = request.GET['']
+ 13:     desc = request.GET['desc']
+ 14:     available = request.GET['available']
+ 15:     author = request.GET['author']
+ 16:     
+ 17:     add_new_book(publish_date, price, name, desc, available, author)
+--------------------------------------------------------------------------------
+[0.09562 s] killed by test_collected_data (library.tests.LibraryTest)
+   - [#   7] CRP library.views:13 : 
+--------------------------------------------------------------------------------
+  9: def add_book(request):
+ 10:     publish_date = request.GET['date']
+ 11:     price = request.GET['price']
+ 12:     name = request.GET['name']
+~13:     desc = request.GET['mutpy']
+ 14:     available = request.GET['available']
+ 15:     author = request.GET['author']
+ 16:     
+ 17:     add_new_book(publish_date, price, name, desc, available, author)
+ 18:     books = Book.objects.all()
+--------------------------------------------------------------------------------
+[0.09019 s] killed by test_collected_data (library.tests.LibraryTest)
+   - [#   8] CRP library.views:13 : 
+--------------------------------------------------------------------------------
+  9: def add_book(request):
+ 10:     publish_date = request.GET['date']
+ 11:     price = request.GET['price']
+ 12:     name = request.GET['name']
+~13:     desc = request.GET['']
+ 14:     available = request.GET['available']
+ 15:     author = request.GET['author']
+ 16:     
+ 17:     add_new_book(publish_date, price, name, desc, available, author)
+ 18:     books = Book.objects.all()
+--------------------------------------------------------------------------------
+[0.09564 s] killed by test_collected_data (library.tests.LibraryTest)
+   - [#   9] CRP library.views:14 : 
+--------------------------------------------------------------------------------
+ 10:     publish_date = request.GET['date']
+ 11:     price = request.GET['price']
+ 12:     name = request.GET['name']
+ 13:     desc = request.GET['desc']
+~14:     available = request.GET['mutpy']
+ 15:     author = request.GET['author']
+ 16:     
+ 17:     add_new_book(publish_date, price, name, desc, available, author)
+ 18:     books = Book.objects.all()
+ 19:     return render(request, 'book_store_management.html', {'books': books})
+--------------------------------------------------------------------------------
+[0.07404 s] killed by test_collected_data (library.tests.LibraryTest)
+   - [#  10] CRP library.views:14 : 
+--------------------------------------------------------------------------------
+ 10:     publish_date = request.GET['date']
+ 11:     price = request.GET['price']
+ 12:     name = request.GET['name']
+ 13:     desc = request.GET['desc']
+~14:     available = request.GET['']
+ 15:     author = request.GET['author']
+ 16:     
+ 17:     add_new_book(publish_date, price, name, desc, available, author)
+ 18:     books = Book.objects.all()
+ 19:     return render(request, 'book_store_management.html', {'books': books})
+--------------------------------------------------------------------------------
+[0.10280 s] killed by test_collected_data (library.tests.LibraryTest)
+   - [#  11] CRP library.views:15 : 
+--------------------------------------------------------------------------------
+ 11:     price = request.GET['price']
+ 12:     name = request.GET['name']
+ 13:     desc = request.GET['desc']
+ 14:     available = request.GET['available']
+~15:     author = request.GET['mutpy']
+ 16:     
+ 17:     add_new_book(publish_date, price, name, desc, available, author)
+ 18:     books = Book.objects.all()
+ 19:     return render(request, 'book_store_management.html', {'books': books})
+ 20: 
+--------------------------------------------------------------------------------
+[0.06964 s] killed by test_collected_data (library.tests.LibraryTest)
+   - [#  12] CRP library.views:15 : 
+--------------------------------------------------------------------------------
+ 11:     price = request.GET['price']
+ 12:     name = request.GET['name']
+ 13:     desc = request.GET['desc']
+ 14:     available = request.GET['available']
+~15:     author = request.GET['']
+ 16:     
+ 17:     add_new_book(publish_date, price, name, desc, available, author)
+ 18:     books = Book.objects.all()
+ 19:     return render(request, 'book_store_management.html', {'books': books})
+ 20: 
+--------------------------------------------------------------------------------
+[0.07290 s] killed by test_collected_data (library.tests.LibraryTest)
+   - [#  13] CRP library.views:19 : 
+--------------------------------------------------------------------------------
+ 15:     author = request.GET['author']
+ 16:     
+ 17:     add_new_book(publish_date, price, name, desc, available, author)
+ 18:     books = Book.objects.all()
+~19:     return render(request, 'mutpy', {'books': books})
+ 20: 
+ 21: 
+ 22: 
+ 23: @save_request
+ 24: def filter_by_date(request):
+--------------------------------------------------------------------------------
+[0.07279 s] killed by test_collected_data (library.tests.LibraryTest)
+   - [#  14] CRP library.views:19 : 
+--------------------------------------------------------------------------------
+ 15:     author = request.GET['author']
+ 16:     
+ 17:     add_new_book(publish_date, price, name, desc, available, author)
+ 18:     books = Book.objects.all()
+~19:     return render(request, '', {'books': books})
+ 20: 
+ 21: 
+ 22: 
+ 23: @save_request
+ 24: def filter_by_date(request):
+--------------------------------------------------------------------------------
+[0.07589 s] killed by test_collected_data (library.tests.LibraryTest)
+   - [#  15] CRP library.views:19 : 
+--------------------------------------------------------------------------------
+ 15:     author = request.GET['author']
+ 16:     
+ 17:     add_new_book(publish_date, price, name, desc, available, author)
+ 18:     books = Book.objects.all()
+~19:     return render(request, 'book_store_management.html', {'mutpy': books})
+ 20: 
+ 21: 
+ 22: 
+ 23: @save_request
+ 24: def filter_by_date(request):
+--------------------------------------------------------------------------------
+[0.08528 s] survived
+   - [#  16] CRP library.views:19 : 
+--------------------------------------------------------------------------------
+ 15:     author = request.GET['author']
+ 16:     
+ 17:     add_new_book(publish_date, price, name, desc, available, author)
+ 18:     books = Book.objects.all()
+~19:     return render(request, 'book_store_management.html', {'': books})
+ 20: 
+ 21: 
+ 22: 
+ 23: @save_request
+ 24: def filter_by_date(request):
+--------------------------------------------------------------------------------
+[0.08451 s] survived
+   - [#  17] CRP library.views:25 : 
+--------------------------------------------------------------------------------
+ 21: 
+ 22: 
+ 23: @save_request
+ 24: def filter_by_date(request):
+~25:     start = request.GET['mutpy']
+ 26:     end = request.GET['end']
+ 27:     books = get_books_by_date(start, end)
+ 28:     return render_to_response('book_store.html', {'books': books})
+ 29: 
+ 30: 
+--------------------------------------------------------------------------------
+[0.02223 s] killed by test_collected_data (library.tests.LibraryTest)
+   - [#  18] CRP library.views:25 : 
+--------------------------------------------------------------------------------
+ 21: 
+ 22: 
+ 23: @save_request
+ 24: def filter_by_date(request):
+~25:     start = request.GET['']
+ 26:     end = request.GET['end']
+ 27:     books = get_books_by_date(start, end)
+ 28:     return render_to_response('book_store.html', {'books': books})
+ 29: 
+ 30: 
+--------------------------------------------------------------------------------
+[0.02274 s] killed by test_collected_data (library.tests.LibraryTest)
+   - [#  19] CRP library.views:26 : 
+--------------------------------------------------------------------------------
+ 22: 
+ 23: @save_request
+ 24: def filter_by_date(request):
+ 25:     start = request.GET['start']
+~26:     end = request.GET['mutpy']
+ 27:     books = get_books_by_date(start, end)
+ 28:     return render_to_response('book_store.html', {'books': books})
+ 29: 
+ 30: 
+ 31: @save_request
+--------------------------------------------------------------------------------
+[0.02228 s] killed by test_collected_data (library.tests.LibraryTest)
+   - [#  20] CRP library.views:26 : 
+--------------------------------------------------------------------------------
+ 22: 
+ 23: @save_request
+ 24: def filter_by_date(request):
+ 25:     start = request.GET['start']
+~26:     end = request.GET['']
+ 27:     books = get_books_by_date(start, end)
+ 28:     return render_to_response('book_store.html', {'books': books})
+ 29: 
+ 30: 
+ 31: @save_request
+--------------------------------------------------------------------------------
+[0.02293 s] killed by test_collected_data (library.tests.LibraryTest)
+   - [#  21] CRP library.views:28 : 
+--------------------------------------------------------------------------------
+ 24: def filter_by_date(request):
+ 25:     start = request.GET['start']
+ 26:     end = request.GET['end']
+ 27:     books = get_books_by_date(start, end)
+~28:     return render_to_response('mutpy', {'books': books})
+ 29: 
+ 30: 
+ 31: @save_request
+ 32: def filter_by_name(request):
+ 33:     name = request.GET['name']
+--------------------------------------------------------------------------------
+[0.02712 s] killed by test_collected_data (library.tests.LibraryTest)
+   - [#  22] CRP library.views:28 : 
+--------------------------------------------------------------------------------
+ 24: def filter_by_date(request):
+ 25:     start = request.GET['start']
+ 26:     end = request.GET['end']
+ 27:     books = get_books_by_date(start, end)
+~28:     return render_to_response('', {'books': books})
+ 29: 
+ 30: 
+ 31: @save_request
+ 32: def filter_by_name(request):
+ 33:     name = request.GET['name']
+--------------------------------------------------------------------------------
+[0.02762 s] killed by test_collected_data (library.tests.LibraryTest)
+   - [#  23] CRP library.views:28 : 
+--------------------------------------------------------------------------------
+ 24: def filter_by_date(request):
+ 25:     start = request.GET['start']
+ 26:     end = request.GET['end']
+ 27:     books = get_books_by_date(start, end)
+~28:     return render_to_response('book_store.html', {'mutpy': books})
+ 29: 
+ 30: 
+ 31: @save_request
+ 32: def filter_by_name(request):
+ 33:     name = request.GET['name']
+--------------------------------------------------------------------------------
+[0.02876 s] killed by test_collected_data (library.tests.LibraryTest)
+   - [#  24] CRP library.views:28 : 
+--------------------------------------------------------------------------------
+ 24: def filter_by_date(request):
+ 25:     start = request.GET['start']
+ 26:     end = request.GET['end']
+ 27:     books = get_books_by_date(start, end)
+~28:     return render_to_response('book_store.html', {'': books})
+ 29: 
+ 30: 
+ 31: @save_request
+ 32: def filter_by_name(request):
+ 33:     name = request.GET['name']
+--------------------------------------------------------------------------------
+[0.03233 s] killed by test_collected_data (library.tests.LibraryTest)
+   - [#  25] CRP library.views:33 : 
+--------------------------------------------------------------------------------
+ 29: 
+ 30: 
+ 31: @save_request
+ 32: def filter_by_name(request):
+~33:     name = request.GET['mutpy']
+ 34:     books = get_books_by_name(name)
+ 35:     return render_to_response('book_store.html', {'books': books})
+ 36: 
+ 37: 
+ 38: def remove_book(request, id):
+--------------------------------------------------------------------------------
+[0.03870 s] killed by test_collected_data (library.tests.LibraryTest)
+   - [#  26] CRP library.views:33 : 
+--------------------------------------------------------------------------------
+ 29: 
+ 30: 
+ 31: @save_request
+ 32: def filter_by_name(request):
+~33:     name = request.GET['']
+ 34:     books = get_books_by_name(name)
+ 35:     return render_to_response('book_store.html', {'books': books})
+ 36: 
+ 37: 
+ 38: def remove_book(request, id):
+--------------------------------------------------------------------------------
+[0.04261 s] killed by test_collected_data (library.tests.LibraryTest)
+   - [#  27] CRP library.views:35 : 
+--------------------------------------------------------------------------------
+ 31: @save_request
+ 32: def filter_by_name(request):
+ 33:     name = request.GET['name']
+ 34:     books = get_books_by_name(name)
+~35:     return render_to_response('mutpy', {'books': books})
+ 36: 
+ 37: 
+ 38: def remove_book(request, id):
+ 39:     remove_book_by_id(id)
+ 40:     return render(request, 'book_store_management.html', {'books': Book.objects.all()})
+--------------------------------------------------------------------------------
+[0.03903 s] killed by test_collected_data (library.tests.LibraryTest)
+   - [#  28] CRP library.views:35 : 
+--------------------------------------------------------------------------------
+ 31: @save_request
+ 32: def filter_by_name(request):
+ 33:     name = request.GET['name']
+ 34:     books = get_books_by_name(name)
+~35:     return render_to_response('', {'books': books})
+ 36: 
+ 37: 
+ 38: def remove_book(request, id):
+ 39:     remove_book_by_id(id)
+ 40:     return render(request, 'book_store_management.html', {'books': Book.objects.all()})
+--------------------------------------------------------------------------------
+[0.04102 s] killed by test_collected_data (library.tests.LibraryTest)
+   - [#  29] CRP library.views:35 : 
+--------------------------------------------------------------------------------
+ 31: @save_request
+ 32: def filter_by_name(request):
+ 33:     name = request.GET['name']
+ 34:     books = get_books_by_name(name)
+~35:     return render_to_response('book_store.html', {'mutpy': books})
+ 36: 
+ 37: 
+ 38: def remove_book(request, id):
+ 39:     remove_book_by_id(id)
+ 40:     return render(request, 'book_store_management.html', {'books': Book.objects.all()})
+--------------------------------------------------------------------------------
+[0.04481 s] killed by test_collected_data (library.tests.LibraryTest)
+   - [#  30] CRP library.views:35 : 
+--------------------------------------------------------------------------------
+ 31: @save_request
+ 32: def filter_by_name(request):
+ 33:     name = request.GET['name']
+ 34:     books = get_books_by_name(name)
+~35:     return render_to_response('book_store.html', {'': books})
+ 36: 
+ 37: 
+ 38: def remove_book(request, id):
+ 39:     remove_book_by_id(id)
+ 40:     return render(request, 'book_store_management.html', {'books': Book.objects.all()})
+--------------------------------------------------------------------------------
+[0.03912 s] killed by test_collected_data (library.tests.LibraryTest)
+   - [#  47] DDL library.views:8  : 
+--------------------------------------------------------------------------------
+  4: from ajax_testing.decorators import save_request
+  5: from library.models import Book
+  6: 
+  7: 
+~ 8: def add_book(request):
+  9:     
+ 10:     publish_date = request.GET['date']
+ 11:     price = request.GET['price']
+ 12:     name = request.GET['name']
+ 13:     desc = request.GET['desc']
+--------------------------------------------------------------------------------
+[0.08685 s] survived
+   - [#  48] DDL library.views:23 : 
+--------------------------------------------------------------------------------
+ 19:     return render(request, 'book_store_management.html', {'books': books})
+ 20: 
+ 21: 
+ 22: 
+~23: def filter_by_date(request):
+ 24:     
+ 25:     start = request.GET['start']
+ 26:     end = request.GET['end']
+ 27:     books = get_books_by_date(start, end)
+ 28:     return render_to_response('book_store.html', {'books': books})
+--------------------------------------------------------------------------------
+[0.11094 s] survived
+   - [#  49] DDL library.views:31 : 
+--------------------------------------------------------------------------------
+ 27:     books = get_books_by_date(start, end)
+ 28:     return render_to_response('book_store.html', {'books': books})
+ 29: 
+ 30: 
+~31: def filter_by_name(request):
+ 32:     
+ 33:     name = request.GET['name']
+ 34:     books = get_books_by_name(name)
+ 35:     return render_to_response('book_store.html', {'books': books})
+ 36: 
+--------------------------------------------------------------------------------
+[0.08487 s] survived
+[*] Mutation score [4.66679 s]: 57.1%
+   - all: 33
+   - killed: 28 (84.8%)
+   - survived: 21 (15.2%)
+   - incompetent: 0 (0.0%)
+   - timeout: 0 (0.0%)

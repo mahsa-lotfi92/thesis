@@ -1,0 +1,276 @@
+[*] Start mutation process:
+   - targets: accounting.methods
+   - tests: accounting.tests
+[*] 1 tests passed:
+   - accounting.tests [0.04383 s]
+[*] Start mutants generation and execution:
+   - [#   1] AOD accounting.methods:16 : 
+--------------------------------------------------------------------------------
+ 12: 
+ 13: 
+ 14: @save_request
+ 15: def get_transactions_by_date(start, end):
+~16:     start = datetime.strptime(start, '%Y/%m/%d') if start else datetime.today() + timedelta(days=1)
+ 17:     end = datetime.strptime(end, '%Y/%m/%d') if end else datetime.today()
+ 18:     return Transaction.objects.filter(date__gte=start, date__lte=end).all()
+ 19: 
+ 20: 
+ 21: @save_request
+--------------------------------------------------------------------------------
+[0.05294 s] survived
+   - [#   2] AOR accounting.methods:16 : 
+--------------------------------------------------------------------------------
+ 12: 
+ 13: 
+ 14: @save_request
+ 15: def get_transactions_by_date(start, end):
+~16:     start = datetime.strptime(start, '%Y/%m/%d') if start else datetime.today() - timedelta(days=(-1))
+ 17:     end = datetime.strptime(end, '%Y/%m/%d') if end else datetime.today()
+ 18:     return Transaction.objects.filter(date__gte=start, date__lte=end).all()
+ 19: 
+ 20: 
+ 21: @save_request
+--------------------------------------------------------------------------------
+[0.03155 s] survived
+   - [#   3] AOR accounting.methods:16 : 
+--------------------------------------------------------------------------------
+ 12: 
+ 13: 
+ 14: @save_request
+ 15: def get_transactions_by_date(start, end):
+~16:     start = datetime.strptime(start, '%Y/%m/%d') if start else datetime.today() + timedelta(days=(+1))
+ 17:     end = datetime.strptime(end, '%Y/%m/%d') if end else datetime.today()
+ 18:     return Transaction.objects.filter(date__gte=start, date__lte=end).all()
+ 19: 
+ 20: 
+ 21: @save_request
+--------------------------------------------------------------------------------
+[0.03406 s] survived
+   - [#   4] AOR accounting.methods:27 : 
+--------------------------------------------------------------------------------
+ 23:     paid = 0
+ 24:     get = 0
+ 25:     for t in transactions:
+ 26:         if t.is_income:
+~27:             get = get - t.amount
+ 28:         else:
+ 29:             paid = paid + t.amount
+ 30:     return (get, paid)
+ 31: 
+ 32: 
+--------------------------------------------------------------------------------
+[0.03122 s] killed by test_collected_data (accounting.tests.AccountingTest)
+   - [#   5] AOR accounting.methods:29 : 
+--------------------------------------------------------------------------------
+ 25:     for t in transactions:
+ 26:         if t.is_income:
+ 27:             get = get + t.amount
+ 28:         else:
+~29:             paid = paid - t.amount
+ 30:     return (get, paid)
+ 31: 
+ 32: 
+ 33: @save_request
+ 34: def remove_transaction_by_id(id):
+--------------------------------------------------------------------------------
+[0.02445 s] killed by test_collected_data (accounting.tests.AccountingTest)
+   - [#   6] COI accounting.methods:26 : 
+--------------------------------------------------------------------------------
+ 22: def get_sum(transactions):
+ 23:     paid = 0
+ 24:     get = 0
+ 25:     for t in transactions:
+~26:         if (not t.is_income):
+ 27:             get = get + t.amount
+ 28:         else:
+ 29:             paid = paid + t.amount
+ 30:     return (get, paid)
+ 31: 
+--------------------------------------------------------------------------------
+[0.02357 s] killed by test_collected_data (accounting.tests.AccountingTest)
+   - [#   7] CRP accounting.methods:9  : 
+--------------------------------------------------------------------------------
+  5: 
+  6: 
+  7: @save_request
+  8: def add_transaction(date, amount, is_income=):
+~ 9:     date = datetime.strptime(date, 'mutpy')
+ 10:     Transaction.objects.create(date=date, amount=amount, is_income=is_income)
+ 11:     return 
+ 12: 
+ 13: 
+ 14: @save_request
+--------------------------------------------------------------------------------
+[0.02792 s] killed by test_collected_data (accounting.tests.AccountingTest)
+   - [#   8] CRP accounting.methods:9  : 
+--------------------------------------------------------------------------------
+  5: 
+  6: 
+  7: @save_request
+  8: def add_transaction(date, amount, is_income=):
+~ 9:     date = datetime.strptime(date, '')
+ 10:     Transaction.objects.create(date=date, amount=amount, is_income=is_income)
+ 11:     return 
+ 12: 
+ 13: 
+ 14: @save_request
+--------------------------------------------------------------------------------
+[0.02971 s] killed by test_collected_data (accounting.tests.AccountingTest)
+   - [#   9] CRP accounting.methods:16 : 
+--------------------------------------------------------------------------------
+ 12: 
+ 13: 
+ 14: @save_request
+ 15: def get_transactions_by_date(start, end):
+~16:     start = datetime.strptime(start, 'mutpy') if start else datetime.today() + timedelta(days=(-1))
+ 17:     end = datetime.strptime(end, '%Y/%m/%d') if end else datetime.today()
+ 18:     return Transaction.objects.filter(date__gte=start, date__lte=end).all()
+ 19: 
+ 20: 
+ 21: @save_request
+--------------------------------------------------------------------------------
+[0.02346 s] killed by test_collected_data (accounting.tests.AccountingTest)
+   - [#  10] CRP accounting.methods:16 : 
+--------------------------------------------------------------------------------
+ 12: 
+ 13: 
+ 14: @save_request
+ 15: def get_transactions_by_date(start, end):
+~16:     start = datetime.strptime(start, '') if start else datetime.today() + timedelta(days=(-1))
+ 17:     end = datetime.strptime(end, '%Y/%m/%d') if end else datetime.today()
+ 18:     return Transaction.objects.filter(date__gte=start, date__lte=end).all()
+ 19: 
+ 20: 
+ 21: @save_request
+--------------------------------------------------------------------------------
+[0.03225 s] killed by test_collected_data (accounting.tests.AccountingTest)
+   - [#  11] CRP accounting.methods:16 : 
+--------------------------------------------------------------------------------
+ 12: 
+ 13: 
+ 14: @save_request
+ 15: def get_transactions_by_date(start, end):
+~16:     start = datetime.strptime(start, '%Y/%m/%d') if start else datetime.today() + timedelta(days=(-2))
+ 17:     end = datetime.strptime(end, '%Y/%m/%d') if end else datetime.today()
+ 18:     return Transaction.objects.filter(date__gte=start, date__lte=end).all()
+ 19: 
+ 20: 
+ 21: @save_request
+--------------------------------------------------------------------------------
+[0.03859 s] survived
+   - [#  12] CRP accounting.methods:17 : 
+--------------------------------------------------------------------------------
+ 13: 
+ 14: @save_request
+ 15: def get_transactions_by_date(start, end):
+ 16:     start = datetime.strptime(start, '%Y/%m/%d') if start else datetime.today() + timedelta(days=(-1))
+~17:     end = datetime.strptime(end, 'mutpy') if end else datetime.today()
+ 18:     return Transaction.objects.filter(date__gte=start, date__lte=end).all()
+ 19: 
+ 20: 
+ 21: @save_request
+ 22: def get_sum(transactions):
+--------------------------------------------------------------------------------
+[0.02929 s] killed by test_collected_data (accounting.tests.AccountingTest)
+   - [#  13] CRP accounting.methods:17 : 
+--------------------------------------------------------------------------------
+ 13: 
+ 14: @save_request
+ 15: def get_transactions_by_date(start, end):
+ 16:     start = datetime.strptime(start, '%Y/%m/%d') if start else datetime.today() + timedelta(days=(-1))
+~17:     end = datetime.strptime(end, '') if end else datetime.today()
+ 18:     return Transaction.objects.filter(date__gte=start, date__lte=end).all()
+ 19: 
+ 20: 
+ 21: @save_request
+ 22: def get_sum(transactions):
+--------------------------------------------------------------------------------
+[0.03111 s] killed by test_collected_data (accounting.tests.AccountingTest)
+   - [#  14] CRP accounting.methods:23 : 
+--------------------------------------------------------------------------------
+ 19: 
+ 20: 
+ 21: @save_request
+ 22: def get_sum(transactions):
+~23:     paid = 1
+ 24:     get = 0
+ 25:     for t in transactions:
+ 26:         if t.is_income:
+ 27:             get = get + t.amount
+ 28:         else:
+--------------------------------------------------------------------------------
+[0.03545 s] killed by test_collected_data (accounting.tests.AccountingTest)
+   - [#  15] CRP accounting.methods:24 : 
+--------------------------------------------------------------------------------
+ 20: 
+ 21: @save_request
+ 22: def get_sum(transactions):
+ 23:     paid = 0
+~24:     get = 1
+ 25:     for t in transactions:
+ 26:         if t.is_income:
+ 27:             get = get + t.amount
+ 28:         else:
+ 29:             paid = paid + t.amount
+--------------------------------------------------------------------------------
+[0.02691 s] killed by test_collected_data (accounting.tests.AccountingTest)
+   - [#  16] DDL accounting.methods:7  : 
+--------------------------------------------------------------------------------
+  3: from accounting.models import Transaction
+  4: from ajax_testing.decorators import save_request
+  5: 
+  6: 
+~ 7: def add_transaction(date, amount, is_income=):
+  8:     
+  9:     date = datetime.strptime(date, '%Y/%m/%d')
+ 10:     Transaction.objects.create(date=date, amount=amount, is_income=is_income)
+ 11:     return 
+ 12: 
+--------------------------------------------------------------------------------
+[0.03098 s] survived
+   - [#  17] DDL accounting.methods:14 : 
+--------------------------------------------------------------------------------
+ 10:     Transaction.objects.create(date=date, amount=amount, is_income=is_income)
+ 11:     return 
+ 12: 
+ 13: 
+~14: def get_transactions_by_date(start, end):
+ 15:     
+ 16:     start = datetime.strptime(start, '%Y/%m/%d') if start else datetime.today() + timedelta(days=(-1))
+ 17:     end = datetime.strptime(end, '%Y/%m/%d') if end else datetime.today()
+ 18:     return Transaction.objects.filter(date__gte=start, date__lte=end).all()
+ 19: 
+--------------------------------------------------------------------------------
+[0.02620 s] survived
+   - [#  18] DDL accounting.methods:21 : 
+--------------------------------------------------------------------------------
+ 17:     end = datetime.strptime(end, '%Y/%m/%d') if end else datetime.today()
+ 18:     return Transaction.objects.filter(date__gte=start, date__lte=end).all()
+ 19: 
+ 20: 
+~21: def get_sum(transactions):
+ 22:     
+ 23:     paid = 0
+ 24:     get = 0
+ 25:     for t in transactions:
+ 26:         if t.is_income:
+--------------------------------------------------------------------------------
+[0.02747 s] survived
+   - [#  19] DDL accounting.methods:33 : 
+--------------------------------------------------------------------------------
+ 29:             paid = paid + t.amount
+ 30:     return (get, paid)
+ 31: 
+ 32: 
+~33: def remove_transaction_by_id(id):
+ 34:     
+ 35:     Transaction.objects.get(id=id).delete()
+ 36:     return 
+--------------------------------------------------------------------------------
+[0.02971 s] survived
+[*] Mutation score [1.29478 s]: 57.9%
+   - all: 19
+   - killed: 11 (57.9%)
+   - survived: 8 (42.1%)
+   - incompetent: 0 (0.0%)
+   - timeout: 0 (0.0%)
